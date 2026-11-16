@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.code-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.code-scroll::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.code-scroll::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+.code-scroll::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.panel-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.panel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.app-bg-gradient {
+  background: linear-gradient(135deg, red, orange, yellow, green, teal, blue, purple);
+}

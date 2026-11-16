@@ -1,0 +1,8 @@
+{
+  "name": "BatchPrint",
+  "description": "Tạo file .bat để in hàng loạt file như Word, Excel, PDF, Image",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
