@@ -1,5 +1,5 @@
 {
-  "name": "BatchPrint",
+  "name": "batch-print",
   "description": "Tạo file .bat để in hàng loạt file như Word, Excel, PDF, Image",
   "requestFramePermissions": [],
   "majorCapabilities": [

@@ -363,7 +363,7 @@ export function ConfigForm({
 
   const handleExportJson = () => {
     const baseName =
-      config.scriptFileName.trim().replace(/\.bat$/i, '') || 'PrintBat';
+      config.scriptFileName.trim().replace(/\.bat$/i, '') || 'batch-print';
     const fileName = `${baseName}-config.json`;
     const blob = new Blob([JSON.stringify(config, null, 2)], {
       type: 'application/json;charset=utf-8',

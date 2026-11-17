@@ -145,7 +145,7 @@ export function generateBatScript(config: PrintConfig): string {
     `@echo off`,
     `setlocal EnableExtensions`,
     ``,
-    `:: PrintBat Studio - Silent Batch Folder Printing Script`,
+    `:: batch-print - Silent Batch Folder Printing Script`,
     `:: Chay truc tiep khong hoi hop thoai chon may in hay cau hinh`,
     ``,
     `set "BAT_SELF=%~f0"`,
