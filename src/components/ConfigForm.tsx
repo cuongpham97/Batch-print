@@ -84,6 +84,7 @@ function getEngineOptions(
         { value: 'WindowsNative', label: 'Windows WinRT' },
         { value: 'SumatraPDF', label: 'SumatraPDF' },
         { value: 'AdobeFoxit', label: 'Adobe / Foxit' },
+        { value: 'ChromePdf', label: 'Google Chrome' },
       ];
     case 'images':
       return [

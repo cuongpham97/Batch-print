@@ -38,7 +38,7 @@ export interface PageMargins extends MarginEdgesCm {
 
 export type DocTypeId = 'word' | 'excel' | 'images' | 'pdf' | 'text' | 'other';
 
-export type PdfEngine = 'SmartAuto' | 'WindowsNative' | 'SumatraPDF' | 'AdobeFoxit';
+export type PdfEngine = 'SmartAuto' | 'WindowsNative' | 'SumatraPDF' | 'AdobeFoxit' | 'ChromePdf';
 export type OfficeEngine = 'SmartAuto' | 'OfficeCom' | 'ShellFallback';
 export type ImageEngine = 'SmartAuto' | 'DotNetPrint' | 'ChromeWebp' | 'ShellFallback';
 export type TextEngine = 'SmartAuto' | 'DotNetText' | 'ShellFallback';
