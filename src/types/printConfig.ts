@@ -39,10 +39,10 @@ export interface PageMargins extends MarginEdgesCm {
 export type DocTypeId = 'word' | 'excel' | 'images' | 'pdf' | 'text' | 'other';
 
 export type PdfEngine = 'SmartAuto' | 'WindowsNative' | 'SumatraPDF' | 'AdobeFoxit' | 'WordCom';
-export type OfficeEngine = 'OfficeCom' | 'ShellFallback';
-export type ImageEngine = 'DotNetPrint' | 'ChromeWebp';
-export type TextEngine = 'DotNetText';
-export type OtherEngine = 'ShellOrChrome';
+export type OfficeEngine = 'SmartAuto' | 'OfficeCom' | 'ShellFallback';
+export type ImageEngine = 'SmartAuto' | 'DotNetPrint' | 'ChromeWebp' | 'ShellFallback';
+export type TextEngine = 'SmartAuto' | 'DotNetText' | 'ShellFallback';
+export type OtherEngine = 'SmartAuto' | 'ShellOrChrome' | 'ShellFallback';
 
 export type FolderSourceMode = 'ScriptDir' | 'CustomPath';
 export type PostPrintAction = 'Keep' | 'MoveToPrinted' | 'Delete';
@@ -158,7 +158,7 @@ function createBaseProfile(overrides: Partial<DocTypeProfile>): DocTypeProfile {
       landscape: { topCm: 2, leftCm: 3, bottomCm: 2, rightCm: 2 },
     },
     copies: 1,
-    engine: 'WindowsNative',
+    engine: 'SmartAuto',
     overPageAction: 'AskBeforePrint',
     maxPagesLimit: 15,
     ...overrides,
@@ -218,13 +218,13 @@ export const DEFAULT_PRINT_CONFIG: PrintConfig = {
   postPrintAction: 'MoveToPrinted',
   autoCloseConsole: false,
   exportLogTxt: false,
-  marginBoundaryMode: 'StrictConfigured',
+  marginBoundaryMode: 'ClampToPrinterMin',
 
   docProfiles: {
-    word: createBaseProfile({ enabled: true, engine: 'OfficeCom', wordSkipBlankPages: true }),
+    word: createBaseProfile({ enabled: true, engine: 'SmartAuto', wordSkipBlankPages: true }),
     excel: createBaseProfile({
       enabled: true,
-      engine: 'OfficeCom',
+      engine: 'SmartAuto',
       excelSheetMode: 'AllSheets',
       excelPrintScope: 'EntireSheet',
       excelFitMode: 'FitAllColumnsOnePage',
@@ -233,12 +233,12 @@ export const DEFAULT_PRINT_CONFIG: PrintConfig = {
       excelSkipBlankAreas: true,
       excelSkipBlankSheets: true,
     }),
-    images: createBaseProfile({ enabled: true, engine: 'DotNetPrint' }),
-    pdf: createBaseProfile({ enabled: true, engine: 'WindowsNative', sumatraCustomPath: '' }),
-    text: createBaseProfile({ enabled: true, engine: 'DotNetText' }),
+    images: createBaseProfile({ enabled: true, engine: 'SmartAuto' }),
+    pdf: createBaseProfile({ enabled: true, engine: 'SmartAuto', sumatraCustomPath: '' }),
+    text: createBaseProfile({ enabled: true, engine: 'SmartAuto' }),
     other: createBaseProfile({
       enabled: true,
-      engine: 'ShellOrChrome',
+      engine: 'SmartAuto',
       customExtensions: '.html, .htm',
     }),
   },

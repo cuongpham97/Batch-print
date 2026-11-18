@@ -68,28 +68,43 @@ function getEngineOptions(
   switch (tab) {
     case 'word':
       return [
+        { value: 'SmartAuto', label: 'Tự động' },
         { value: 'OfficeCom', label: 'Microsoft Word COM' },
         { value: 'ShellFallback', label: 'Windows Shell' },
       ];
     case 'excel':
       return [
+        { value: 'SmartAuto', label: 'Tự động' },
         { value: 'OfficeCom', label: 'Microsoft Excel COM' },
         { value: 'ShellFallback', label: 'Windows Shell' },
       ];
     case 'pdf':
       return [
-        { value: 'SmartAuto', label: 'Tự động (WinRT / Sumatra)' },
+        { value: 'SmartAuto', label: 'Tự động' },
         { value: 'WindowsNative', label: 'Windows WinRT' },
         { value: 'SumatraPDF', label: 'SumatraPDF' },
         { value: 'AdobeFoxit', label: 'Adobe / Foxit' },
-        { value: 'WordCom', label: 'Microsoft Word COM (dự phòng)' },
+        { value: 'WordCom', label: 'Microsoft Word COM' },
       ];
     case 'images':
-      return [{ value: 'DotNetPrint', label: '.NET PrintDocument (.webp qua Chrome)' }];
+      return [
+        { value: 'SmartAuto', label: 'Tự động' },
+        { value: 'DotNetPrint', label: '.NET PrintDocument' },
+        { value: 'ChromeWebp', label: 'Google Chrome' },
+        { value: 'ShellFallback', label: 'Windows Shell' },
+      ];
     case 'text':
-      return [{ value: 'DotNetText', label: '.NET PrintDocument' }];
+      return [
+        { value: 'SmartAuto', label: 'Tự động' },
+        { value: 'DotNetText', label: '.NET PrintDocument' },
+        { value: 'ShellFallback', label: 'Windows Shell' },
+      ];
     case 'other':
-      return [{ value: 'ShellOrChrome', label: 'Chrome Kiosk (.html/.htm) · Shell' }];
+      return [
+        { value: 'SmartAuto', label: 'Tự động' },
+        { value: 'ShellOrChrome', label: 'Chrome Kiosk (.html/.htm) · Shell' },
+        { value: 'ShellFallback', label: 'Windows Shell' },
+      ];
   }
 }
 
@@ -523,7 +538,7 @@ export function ConfigForm({
 
           {/* 2-Column Layout for General Settings */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
-            {/* Column 1: Thư mục */}
+            {/* Column 1: Thư mục & Lề */}
             <div className="space-y-3">
               <div className="space-y-1">
                 <label
@@ -612,18 +627,18 @@ export function ConfigForm({
                         <tbody className="text-slate-200">
                           <tr className="border-b border-slate-700/80">
                             <td className="px-2 py-1.5 font-semibold text-white border-r border-slate-700/80 whitespace-nowrap align-top">
-                              Luôn theo lề đã cài đặt
-                            </td>
-                            <td className="px-2 py-1.5 align-top">
-                              Giữ đúng số cm bạn đã đặt (VD <strong className="text-white">0 cm</strong> sát mép giấy); phần nằm ngoài vùng in vật lý của máy in thường sẽ bị cắt.
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="px-2 py-1.5 font-semibold text-white border-r border-slate-700/80 align-top">
                               Nhỏ nhất theo lề giới hạn vật lý của máy in
                             </td>
                             <td className="px-2 py-1.5 align-top">
                               Nếu lề cài đặt nhỏ hơn giới hạn vật lý, tự nâng lên mức tối thiểu máy in in được để không mất chữ/ảnh; nếu lớn hơn vẫn giữ đúng số cm đã cài.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="px-2 py-1.5 font-semibold text-white border-r border-slate-700/80 align-top">
+                              Luôn theo lề đã cài đặt
+                            </td>
+                            <td className="px-2 py-1.5 align-top">
+                              Giữ đúng số cm bạn đã đặt (VD <strong className="text-white">0 cm</strong> sát mép giấy); phần nằm ngoài vùng in vật lý của máy in thường sẽ bị cắt.
                             </td>
                           </tr>
                         </tbody>
@@ -639,10 +654,10 @@ export function ConfigForm({
                   }
                   className={selectClass}
                 >
-                  <option value="StrictConfigured">Luôn theo lề đã cài đặt</option>
                   <option value="ClampToPrinterMin">
                     Nhỏ nhất theo lề giới hạn vật lý của máy in
                   </option>
+                  <option value="StrictConfigured">Luôn theo lề đã cài đặt</option>
                 </select>
               </div>
             </div>
