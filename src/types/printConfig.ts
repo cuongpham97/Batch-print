@@ -78,6 +78,7 @@ export interface DocTypeProfile {
 }
 
 export type PrinterMode = 'WindowsDefault' | 'SpecificPrinter' | 'AskOnRun';
+export type MarginBoundaryMode = 'StrictConfigured' | 'ClampToPrinterMin';
 
 export interface PrintConfig {
   scriptFileName: string;
@@ -95,6 +96,7 @@ export interface PrintConfig {
   postPrintAction: PostPrintAction;
   autoCloseConsole: boolean;
   exportLogTxt: boolean;
+  marginBoundaryMode: MarginBoundaryMode;
 
   docProfiles: Record<DocTypeId, DocTypeProfile>;
 }
@@ -216,6 +218,7 @@ export const DEFAULT_PRINT_CONFIG: PrintConfig = {
   postPrintAction: 'MoveToPrinted',
   autoCloseConsole: false,
   exportLogTxt: false,
+  marginBoundaryMode: 'StrictConfigured',
 
   docProfiles: {
     word: createBaseProfile({ enabled: true, engine: 'OfficeCom', wordSkipBlankPages: true }),
@@ -344,6 +347,11 @@ export function parseImportedPrintConfig(raw: unknown): PrintConfig | null {
     autoCloseConsole:
       typeof raw.autoCloseConsole === 'boolean' ? raw.autoCloseConsole : base.autoCloseConsole,
     exportLogTxt: typeof raw.exportLogTxt === 'boolean' ? raw.exportLogTxt : base.exportLogTxt,
+    marginBoundaryMode:
+      raw.marginBoundaryMode === 'StrictConfigured' ||
+      raw.marginBoundaryMode === 'ClampToPrinterMin'
+        ? raw.marginBoundaryMode
+        : base.marginBoundaryMode,
     docProfiles: mergedProfiles,
   };
 }

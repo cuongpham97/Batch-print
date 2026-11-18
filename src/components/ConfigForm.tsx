@@ -10,6 +10,7 @@ import {
   ExcelPrintScope,
   ExcelSheetMode,
   FolderSourceMode,
+  MarginBoundaryMode,
   MarginEdgesCm,
   MarginMode,
   OrientationMode,
@@ -580,6 +581,67 @@ export function ConfigForm({
                   <option value="NameDesc">Tên Z → A</option>
                   <option value="DateOldest">Cũ nhất trước</option>
                   <option value="DateNewest">Mới nhất trước</option>
+                </select>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-1">
+                  <label
+                    htmlFor="margin-boundary-select"
+                    className="block text-xs font-medium text-slate-700"
+                  >
+                    Giới hạn lề khi in
+                  </label>
+                  <HoverTip
+                    align="col1"
+                    wide
+                    text="Luôn theo lề đã cài đặt: giữ đúng số cm bạn đặt (có thể bị cắt sát mép nếu nhỏ hơn giới hạn vật lý). Nhỏ nhất theo lề giới hạn vật lý của máy in: tự nâng lên mức tối thiểu máy in in được để không mất chữ/ảnh."
+                    content={
+                      <table className="w-full border-collapse text-[10.5px] leading-snug border border-slate-600/80 rounded overflow-hidden">
+                        <thead>
+                          <tr className="bg-slate-900/90 text-slate-200">
+                            <th className="text-left font-semibold px-2 py-1 border-b border-r border-slate-600/80">
+                              Lựa chọn
+                            </th>
+                            <th className="text-left font-semibold px-2 py-1 border-b border-slate-600/80">
+                              Mô tả
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-slate-200">
+                          <tr className="border-b border-slate-700/80">
+                            <td className="px-2 py-1.5 font-semibold text-white border-r border-slate-700/80 whitespace-nowrap align-top">
+                              Luôn theo lề đã cài đặt
+                            </td>
+                            <td className="px-2 py-1.5 align-top">
+                              Giữ đúng số cm bạn đã đặt (VD <strong className="text-white">0 cm</strong> sát mép giấy); phần nằm ngoài vùng in vật lý của máy in thường sẽ bị cắt.
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="px-2 py-1.5 font-semibold text-white border-r border-slate-700/80 align-top">
+                              Nhỏ nhất theo lề giới hạn vật lý của máy in
+                            </td>
+                            <td className="px-2 py-1.5 align-top">
+                              Nếu lề cài đặt nhỏ hơn giới hạn vật lý, tự nâng lên mức tối thiểu máy in in được để không mất chữ/ảnh; nếu lớn hơn vẫn giữ đúng số cm đã cài.
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    }
+                  />
+                </div>
+                <select
+                  id="margin-boundary-select"
+                  value={config.marginBoundaryMode}
+                  onChange={(e) =>
+                    updateField('marginBoundaryMode', e.target.value as MarginBoundaryMode)
+                  }
+                  className={selectClass}
+                >
+                  <option value="StrictConfigured">Luôn theo lề đã cài đặt</option>
+                  <option value="ClampToPrinterMin">
+                    Nhỏ nhất theo lề giới hạn vật lý của máy in
+                  </option>
                 </select>
               </div>
             </div>
