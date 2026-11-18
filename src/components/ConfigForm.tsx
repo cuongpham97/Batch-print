@@ -82,6 +82,7 @@ function getEngineOptions(
         { value: 'WindowsNative', label: 'Windows WinRT' },
         { value: 'SumatraPDF', label: 'SumatraPDF' },
         { value: 'AdobeFoxit', label: 'Adobe / Foxit' },
+        { value: 'WordCom', label: 'Microsoft Word COM (dự phòng)' },
       ];
     case 'images':
       return [{ value: 'DotNetPrint', label: '.NET PrintDocument (.webp qua Chrome)' }];
